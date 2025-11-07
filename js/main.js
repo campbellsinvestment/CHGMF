@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const sectionHeight = section.offsetHeight;
             const sectionTop = section.offsetTop - 100;
             const sectionId = section.getAttribute('id');
-            const navLink = document.querySelector(`.nav-link[href*="${sectionId}"]`);
+            const navLink = document.querySelector(`.nav-link[href$="${sectionId}"]`);
 
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
                 if (navLink) {
@@ -229,8 +229,12 @@ const statsObserver = new IntersectionObserver(function(entries) {
         if (entry.isIntersecting) {
             const statNumbers = entry.target.querySelectorAll('.stat-number');
             statNumbers.forEach(stat => {
-                const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
-                animateCounter(stat, target);
+                if (stat.textContent) {
+                    const target = parseInt(stat.textContent.replace(/[^\d]/g, ''));
+                    if (!isNaN(target)) {
+                        animateCounter(stat, target);
+                    }
+                }
             });
             statsObserver.unobserve(entry.target);
         }
