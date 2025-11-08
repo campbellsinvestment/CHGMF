@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Caring Hearts Global Mission Foundation</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/pages.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(45, 80, 22, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(45, 80, 22, 0.95), transparent);
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h3 {
+            margin: 0 0 0.5rem 0;
+            font-family: 'Merriweather', serif;
+            font-size: 1.1rem;
+            color: #f4d03f;
+        }
+
+        .gallery-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+        }
+
+        .lightbox-close:hover {
+            color: #f4d03f;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: 2px solid white;
+            color: white;
+            font-size: 2rem;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(244, 208, 63, 0.3);
+            border-color: #f4d03f;
+        }
+
+        .lightbox-prev {
+            left: 2rem;
+        }
+
+        .lightbox-next {
+            right: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .lightbox-nav {
+                font-size: 1.5rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .lightbox-prev {
+                left: 1rem;
+            }
+
+            .lightbox-next {
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo">
+                        <img src="../Logos/Caring Hearts Logo Design-02.png" alt="CHGMF Logo">
+                    </div>
+                    <button class="mobile-menu-btn" aria-label="Toggle menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li class="dropdown">
+                            <a href="programs.html">Programs ▾</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="programs.html#disaster-relief">Disaster Relief</a></li>
+                                <li><a href="programs.html#service-learning">Service Learning</a></li>
+                                <li><a href="programs.html#health-facility">Health Facility Sponsor</a></li>
+                                <li><a href="programs.html#scholarship">Health Education Scholarship</a></li>
+                                <li><a href="programs.html#community">Community Development</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="events.html">Events</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="ways-to-give.html">Ways to Give</a>
+                        </li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="gallery.html" class="active">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Photo Gallery</h1>
+            <p>Our Mission in Pictures</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section" style="background: white; padding: 5rem 0;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 1rem;">Mission Moments</h2>
+            <p class="section-intro" style="margin-bottom: 3rem; color: #666; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Explore our journey of making a difference in communities around the world. Each photo tells a story of hope, healing, and transformation.
+            </p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="../assets/20210223_185842.jpg" alt="Mission Work">
+                    <div class="gallery-overlay">
+                        <h3>Community Outreach</h3>
+                        <p>Serving communities with care and compassion</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="../assets/20210223_185921.jpg" alt="Healthcare Services">
+                    <div class="gallery-overlay">
+                        <h3>Healthcare Services</h3>
+                        <p>Providing essential medical care</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="../assets/20210223_190446.jpg" alt="Team in Action">
+                    <div class="gallery-overlay">
+                        <h3>Our Team</h3>
+                        <p>Dedicated professionals making an impact</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="../assets/20210223_190453.jpg" alt="Service Learning">
+                    <div class="gallery-overlay">
+                        <h3>Service Learning</h3>
+                        <p>Training the next generation of healthcare workers</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="../assets/20210223_191748.jpg" alt="Community Health">
+                    <div class="gallery-overlay">
+                        <h3>Community Health</h3>
+                        <p>Promoting wellness and prevention</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="../assets/20210223_191940.jpg" alt="Medical Mission">
+                    <div class="gallery-overlay">
+                        <h3>Medical Mission</h3>
+                        <p>Bringing hope to underserved areas</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="../assets/20210223_191946.jpg" alt="Patient Care">
+                    <div class="gallery-overlay">
+                        <h3>Patient Care</h3>
+                        <p>One patient at a time</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="../assets/20210223_192644.jpg" alt="Health Education">
+                    <div class="gallery-overlay">
+                        <h3>Health Education</h3>
+                        <p>Empowering communities through knowledge</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(8)">
+                    <img src="../assets/20210223_195648.jpg" alt="Volunteers">
+                    <div class="gallery-overlay">
+                        <h3>Volunteer Team</h3>
+                        <p>Hearts dedicated to service</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(9)">
+                    <img src="../assets/20210223_195853.jpg" alt="Community Impact">
+                    <div class="gallery-overlay">
+                        <h3>Community Impact</h3>
+                        <p>Creating lasting change together</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(10)">
+                    <img src="../assets/20210223_200348.jpg" alt="Mission Support">
+                    <div class="gallery-overlay">
+                        <h3>Mission Support</h3>
+                        <p>Building stronger communities</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(11)">
+                    <img src="../assets/20210223_211641.jpg" alt="Healthcare Outreach">
+                    <div class="gallery-overlay">
+                        <h3>Healthcare Outreach</h3>
+                        <p>Reaching those in need</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(12)">
+                    <img src="../assets/20210223_231350.jpg" alt="Global Mission">
+                    <div class="gallery-overlay">
+                        <h3>Global Mission</h3>
+                        <p>Our work spans continents</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(13)">
+                    <img src="../assets/20210223_170954.jpg" alt="Care & Compassion">
+                    <div class="gallery-overlay">
+                        <h3>Care & Compassion</h3>
+                        <p>At the heart of everything we do</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(14)">
+                    <img src="../assets/20210223_171324.jpg" alt="Service Learning Program">
+                    <div class="gallery-overlay">
+                        <h3>Service Learning</h3>
+                        <p>Hands-on experience with purpose</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(15)">
+                    <img src="../assets/20210223_183212.jpg" alt="Medical Services">
+                    <div class="gallery-overlay">
+                        <h3>Medical Services</h3>
+                        <p>Quality care for all</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(16)">
+                    <img src="../assets/20210224_145555.jpg" alt="Team Collaboration">
+                    <div class="gallery-overlay">
+                        <h3>Team Collaboration</h3>
+                        <p>Working together for a better tomorrow</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(17)">
+                    <img src="../assets/20210224_150011.jpg" alt="Health Promotion">
+                    <div class="gallery-overlay">
+                        <h3>Health Promotion</h3>
+                        <p>Improving lives globally</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" onclick="openLightbox(18)">
+                    <img src="../assets/20210224_151727.jpg" alt="Mission Complete">
+                    <div class="gallery-overlay">
+                        <h3>Mission Accomplished</h3>
+                        <p>Making a difference, one mission at a time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="lightbox-close" onclick="closeLightbox(event)">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">‹</button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Gallery Image">
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">›</button>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <img src="../Logos/Caring Hearts Logo Design-02.png" alt="CHGMF Logo">
+                    </div>
+                    <p>Promoting health and creating impactive lives across communities worldwide.</p>
+                    <p style="font-style: italic; color: #B8860B; margin-top: 0.5rem;">Established 2012</p>
+                    <div class="footer-contact">
+                        <p>caringheartsgmf@gmail.com</p>
+                        <p>949-228-9857</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="ways-to-give.html#volunteer">Volunteer</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="ways-to-give.html">Ways to Give</a></li>
+                        <li><a href="testimonials.html">Testimonials</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; Copyright 2012-2025 Caring Hearts Global Mission Foundation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const images = [
+            { src: '../assets/20210223_185842.jpg', title: 'Community Outreach', desc: 'Serving communities with care and compassion' },
+            { src: '../assets/20210223_185921.jpg', title: 'Healthcare Services', desc: 'Providing essential medical care' },
+            { src: '../assets/20210223_190446.jpg', title: 'Our Team', desc: 'Dedicated professionals making an impact' },
+            { src: '../assets/20210223_190453.jpg', title: 'Service Learning', desc: 'Training the next generation of healthcare workers' },
+            { src: '../assets/20210223_191748.jpg', title: 'Community Health', desc: 'Promoting wellness and prevention' },
+            { src: '../assets/20210223_191940.jpg', title: 'Medical Mission', desc: 'Bringing hope to underserved areas' },
+            { src: '../assets/20210223_191946.jpg', title: 'Patient Care', desc: 'One patient at a time' },
+            { src: '../assets/20210223_192644.jpg', title: 'Health Education', desc: 'Empowering communities through knowledge' },
+            { src: '../assets/20210223_195648.jpg', title: 'Volunteer Team', desc: 'Hearts dedicated to service' },
+            { src: '../assets/20210223_195853.jpg', title: 'Community Impact', desc: 'Creating lasting change together' },
+            { src: '../assets/20210223_200348.jpg', title: 'Mission Support', desc: 'Building stronger communities' },
+            { src: '../assets/20210223_211641.jpg', title: 'Healthcare Outreach', desc: 'Reaching those in need' },
+            { src: '../assets/20210223_231350.jpg', title: 'Global Mission', desc: 'Our work spans continents' },
+            { src: '../assets/20210223_170954.jpg', title: 'Care & Compassion', desc: 'At the heart of everything we do' },
+            { src: '../assets/20210223_171324.jpg', title: 'Service Learning', desc: 'Hands-on experience with purpose' },
+            { src: '../assets/20210223_183212.jpg', title: 'Medical Services', desc: 'Quality care for all' },
+            { src: '../assets/20210224_145555.jpg', title: 'Team Collaboration', desc: 'Working together for a better tomorrow' },
+            { src: '../assets/20210224_150011.jpg', title: 'Health Promotion', desc: 'Improving lives globally' },
+            { src: '../assets/20210224_151727.jpg', title: 'Mission Accomplished', desc: 'Making a difference, one mission at a time' }
+        ];
+
+        let currentImageIndex = 0;
+
+        function openLightbox(index) {
+            currentImageIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = images[index].src;
+            img.alt = images[index].title;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox(event) {
+            if (event.target.classList.contains('lightbox') || event.target.classList.contains('lightbox-close')) {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        function changeImage(direction, event) {
+            event.stopPropagation();
+            currentImageIndex += direction;
+            if (currentImageIndex < 0) currentImageIndex = images.length - 1;
+            if (currentImageIndex >= images.length) currentImageIndex = 0;
+            
+            const img = document.getElementById('lightbox-img');
+            img.src = images[currentImageIndex].src;
+            img.alt = images[currentImageIndex].title;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (event.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else if (event.key === 'ArrowLeft') {
+                    changeImage(-1, event);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1, event);
+                }
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
