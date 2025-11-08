@@ -9,6 +9,106 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* Mobile responsive overrides for About page */
+        @media (max-width: 968px) {
+            /* What We Do cards - single column */
+            .what-we-do-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+                max-width: 600px !important;
+            }
+
+            /* Who We Are section - single column */
+            .who-we-are-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .who-we-are-grid > div:first-child {
+                order: 1;
+            }
+
+            .who-we-are-grid > div:last-child {
+                order: 2;
+            }
+
+            /* Stats boxes - single column */
+            .stats-grid {
+                display: grid !important;
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Our Journey section - single column */
+            .journey-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            .journey-grid > div:first-child {
+                order: 2;
+            }
+
+            .journey-grid > div:last-child {
+                order: 1;
+            }
+
+            .journey-grid img {
+                height: 300px !important;
+            }
+
+            /* Journey stats grid */
+            .journey-stats-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem !important;
+            }
+
+            /* Reduce padding on mobile */
+            .section {
+                padding: 3rem 0 !important;
+            }
+
+            /* Card padding adjustments */
+            .what-we-do-grid > div {
+                padding: 2rem 1.5rem !important;
+            }
+
+            /* Font size adjustments */
+            .what-we-do-grid h3 {
+                font-size: 1.25rem !important;
+            }
+
+            .what-we-do-grid p {
+                font-size: 0.95rem !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .section-title {
+                font-size: 2rem !important;
+            }
+
+            .intro-text {
+                font-size: 1rem !important;
+            }
+
+            /* Even smaller cards on tiny screens */
+            .what-we-do-grid > div {
+                padding: 1.75rem 1.25rem !important;
+            }
+
+            .wwd-icon-circle {
+                width: 70px !important;
+                height: 70px !important;
+            }
+
+            .wwd-icon-circle svg {
+                width: 35px !important;
+                height: 35px !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -73,7 +173,7 @@
                 In collaboration with the Ministry of Health or respective entity in the country of need, 
                 the foundation aims to:
             </p>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1400px; margin: 0 auto;">
+            <div class="what-we-do-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 1400px; margin: 0 auto;">
                 <!-- Health Promotion Card -->
                 <div style="background: white; border-radius: 20px; padding: 2.5rem 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-top: 4px solid #B8860B; transition: all 0.3s ease; position: relative; overflow: hidden;"
                      onmouseover="this.style.transform='translateY(-12px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.15)'; this.querySelector('.wwd-icon-circle').style.transform='scale(1.1) rotate(10deg)'"
@@ -164,7 +264,7 @@
         <div class="container">
             <h2 class="section-title">Who We Are</h2>
             <div style="max-width: 1000px; margin: 0 auto;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
+                <div class="who-we-are-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-bottom: 3rem;">
                     <div>
                         <div style="background: linear-gradient(135deg, #2D5016 0%, #1a4310 100%); padding: 3rem; border-radius: 20px; color: white; box-shadow: 0 10px 30px rgba(45, 80, 22, 0.2);">
                             <div style="font-size: 4rem; font-weight: bold; color: #B8860B; margin-bottom: 0.5rem;">2012</div>
@@ -177,7 +277,7 @@
                             dedicated to advocating for improved human living conditions, supporting global health promotion, 
                             and enhancing service learning opportunities for healthcare professionals worldwide.
                         </p>
-                        <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                        <div class="stats-grid" style="display: flex; gap: 2rem; flex-wrap: wrap;">
                             <div style="flex: 1; min-width: 150px;">
                                 <div style="font-size: 2.5rem; font-weight: bold; color: #2D5016; margin-bottom: 0.25rem;">13+</div>
                                 <div style="color: #777; font-size: 0.95rem;">Years of Service</div>
@@ -305,7 +405,7 @@
         <div class="container">
             <h2 class="section-title" style="margin-bottom: 4rem;">Our Journey</h2>
             <div style="max-width: 1100px; margin: 0 auto;">
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem;">
+                <div class="journey-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-bottom: 4rem;">
                     <div>
                         <div style="position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.12);">
                             <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=600&q=80" alt="Our History" style="width: 100%; height: 400px; object-fit: cover;">
@@ -332,7 +432,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
+                        <div class="journey-stats-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem;">
                             <div style="background: #f0f5f0; padding: 1.5rem; border-radius: 12px; border-left: 3px solid #2D5016;">
                                 <div style="color: #2D5016; font-weight: bold; font-size: 0.85rem; margin-bottom: 0.5rem;">ESTABLISHED</div>
                                 <div style="color: #555; font-size: 1.5rem; font-weight: bold;">2012</div>

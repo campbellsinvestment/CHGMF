@@ -531,3 +531,49 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* Mobile responsive styles for About page */
+@media (max-width: 968px) {
+    /* What We Do cards - stack in single column on tablets and mobile */
+    .what-we-do div[style*="grid-template-columns: repeat(3, 1fr)"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+        max-width: 600px !important;
+    }
+
+    /* Who We Are section - stack in single column */
+    section[style*="background: white"] div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Our Journey section - stack in single column */
+    section:has(h2:contains("Our Journey")) div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Journey image order fix */
+    section div[style*="position: relative; border-radius: 20px; overflow: hidden"] {
+        order: -1;
+    }
+
+    section div[style*="position: relative; border-radius: 20px; overflow: hidden"] img {
+        height: 300px !important;
+    }
+
+    /* Stats boxes in Who We Are */
+    div[style*="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem"] {
+        grid-template-columns: 1fr !important;
+    }
+
+    /* Adjust padding on sections for mobile */
+    .section {
+        padding: 3rem 0 !important;
+    }
+
+    .what-we-do,
+    section[style*="padding: 5rem 0"] {
+        padding: 3rem 0 !important;
+    }
+}
