@@ -532,7 +532,8 @@ body {
         color: #555;
     }
 
-    .dropdown > a::after {
+    /* Only show arrow on dropdowns that have submenus */
+    .dropdown:has(.dropdown-menu) > a::after {
         content: ' ▾';
         font-size: 0.8rem;
     }

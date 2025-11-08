@@ -11,27 +11,60 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Close mobile menu when clicking on regular menu items
+    const navLinks = document.querySelectorAll('.nav-menu > li:not(.dropdown) > a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                setTimeout(() => {
+                    navMenu.classList.remove('active');
+                    if (mobileMenuBtn) {
+                        mobileMenuBtn.classList.remove('active');
+                    }
+                }, 100);
+            }
+        });
+    });
+
     // Dropdown menus
     const dropdowns = document.querySelectorAll('.dropdown');
     dropdowns.forEach(dropdown => {
         const dropdownLink = dropdown.querySelector('a');
+        const dropdownMenu = dropdown.querySelector('.dropdown-menu');
         
-        dropdownLink.addEventListener('click', function(e) {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                e.stopPropagation();
-                
-                // Close other dropdowns
-                dropdowns.forEach(d => {
-                    if (d !== dropdown) {
-                        d.classList.remove('active');
+        // Only handle dropdown behavior if there's actually a submenu
+        if (dropdownMenu && dropdownMenu.children.length > 0) {
+            dropdownLink.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Close other dropdowns
+                    dropdowns.forEach(d => {
+                        if (d !== dropdown) {
+                            d.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current dropdown
+                    dropdown.classList.toggle('active');
+                }
+            });
+            
+            // Allow submenu items to navigate
+            const submenuLinks = dropdownMenu.querySelectorAll('a');
+            submenuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    if (window.innerWidth <= 768) {
+                        // Allow navigation - close the mobile menu after click
+                        setTimeout(() => {
+                            navMenu.classList.remove('active');
+                            mobileMenuBtn.classList.remove('active');
+                        }, 100);
                     }
                 });
-                
-                // Toggle current dropdown
-                dropdown.classList.toggle('active');
-            }
-        });
+            });
+        }
     });
 
     // Smooth scrolling for anchor links
