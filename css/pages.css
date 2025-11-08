@@ -3,11 +3,11 @@
 /* ===== Page Hero ===== */
 .page-hero {
     position: relative;
-    height: 350px;
+    min-height: 550px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #2D5016 0%, #235a13 25%, #1a4310 50%, #0f2a08 100%);
+    background: var(--forest-green) url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&q=80') center/cover no-repeat;
     margin-bottom: 4rem;
     overflow: hidden;
 }
@@ -19,7 +19,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(184, 134, 11, 0.1) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(45, 80, 22, 0.40) 0%, rgba(30, 64, 18, 0.45) 50%, rgba(15, 36, 9, 0.50) 100%);
     pointer-events: none;
 }
 
@@ -41,6 +41,35 @@
     font-size: 1.25rem;
     opacity: 0.95;
     font-family: 'Lato', sans-serif;
+}
+
+/* Page-specific hero backgrounds */
+.hero-about {
+    background-image: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=1920&q=80');
+}
+
+.hero-programs {
+    background-image: url('https://images.unsplash.com/photo-1593113598332-cd288d649433?w=1920&q=80');
+}
+
+.hero-events {
+    background-image: url('https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?w=1920&q=80');
+}
+
+.hero-ways-to-give {
+    background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1920&q=80');
+}
+
+.hero-testimonials {
+    background-image: url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=1920&q=80');
+}
+
+.hero-contact {
+    background-image: url('https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=1920&q=80');
+}
+
+.hero-gallery {
+    background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1920&q=80');
 }
 
 /* ===== Programs Page ===== */
