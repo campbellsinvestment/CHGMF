@@ -1,0 +1,11 @@
+# Jekyll configuration for GitHub Pages
+permalink: pretty
+
+# Include files that start with underscore
+include:
+  - _pages
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - .gitignore
