@@ -527,8 +527,57 @@
         gap: 2rem;
     }
     
+    .contact-info,
+    .contact-form-wrapper {
+        padding: 2rem 1.5rem;
+    }
+    
+    .contact-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
     .events-grid {
         grid-template-columns: 1fr;
+    }
+}
+
+/* Additional mobile optimizations for smaller screens */
+@media (max-width: 640px) {
+    .contact-section {
+        overflow-x: hidden;
+    }
+
+    .contact-info,
+    .contact-form-wrapper {
+        padding: 1.5rem 1rem;
+        border-radius: 12px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .contact-wrapper {
+        gap: 1.5rem;
+    }
+    
+    .form-group {
+        margin-bottom: 1.25rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .g-recaptcha {
+        transform: scale(0.85);
+        transform-origin: 0 0;
+        width: 100%;
+        overflow: hidden;
     }
 }
 
