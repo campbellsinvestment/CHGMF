@@ -452,11 +452,75 @@
             <p class="section-intro" style="margin-bottom: 4rem; color: #666;">
                 Meet the dedicated professionals who make our mission possible
             </p>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto;">
+            <style>
+                .team-card {
+                    background: white;
+                    border-radius: 20px;
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+                    transition: all 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .team-card:has(.collapsed) {
+                    height: 780px;
+                }
+                .team-card:nth-child(1):has(.collapsed) {
+                    height: 730px;
+                }
+                .team-card:nth-child(3):has(.collapsed) {
+                    height: 810px;
+                }
+                .team-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+                }
+                .team-card-content {
+                    padding: 2rem;
+                    color: #555;
+                    line-height: 1.8;
+                    font-size: 0.95rem;
+                    flex: 1;
+                    position: relative;
+                }
+                .team-card-content.collapsed {
+                    max-height: 410px;
+                    overflow: hidden;
+                }
+                .team-card-content.collapsed::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 80px;
+                    background: linear-gradient(to bottom, transparent, white);
+                }
+                .team-card-content.expanded {
+                    max-height: none;
+                    overflow: visible;
+                }
+                .read-more-btn {
+                    display: block;
+                    text-align: center;
+                    padding: 1rem 2rem;
+                    background: #f9f9f9;
+                    color: #2D5016;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                    border: none;
+                    width: 100%;
+                    font-size: 0.9rem;
+                }
+                .read-more-btn:hover {
+                    background: #2D5016;
+                    color: white;
+                }
+            </style>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; max-width: 1200px; margin: 0 auto; align-items: start;">
                 <!-- Dr. Nadine Brown Farr -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                <div class="team-card">
                     <div style="background: linear-gradient(135deg, #2D5016 0%, #1a4310 100%); padding: 2.5rem 2rem 3.5rem; position: relative;">
                         <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
                             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -465,38 +529,25 @@
                             </svg>
                         </div>
                         <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Dr. Nadine Brown Farr</h3>
-                        <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">DNP, MPH, MSN, FNP-BC</div>
+                        <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">DNP, MPH, FNP-BC</div>
                         <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">President</div>
                     </div>
-                    <div style="padding: 2rem; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                    <div class="team-card-content collapsed">
                         <p style="margin-bottom: 1rem;">
-                            Dr. Brown Farr is a registered nurse with over twenty years of diverse nursing experience 
-                            in the United States and the Caribbean. In addition to her Public Health degree, she has 
-                            completed training in Voluntary Counseling and Testing for HIV/AIDS, Disease Surveillance, 
-                            Media Health Relations and practiced as a Registered Midwife in a developing country for 
-                            several years.
+                            Dr. Brown Farr is a registered nurse with over thirty years of diverse nursing experience here in the United States and the Caribbean. In addition to her Public Health degree, she has completed training in Voluntary Counseling and Testing for HIV/AIDS, Disease Surveillance, Media Health Relations and practiced as a Registered Midwife in a developing country for several years. Mrs. Brown Farr is currently a Nursing Faculty who also practices part time as a Family Nurse Practitioner and Hospital Simulation Learning Center Educator. She completed her Doctor of Nursing Practice at the Southern California State University DNP Consortium, (CSU Long Beach, Fullerton, Los Angeles).
                         </p>
                         <p style="margin-bottom: 1rem;">
-                            She is currently a Nursing Faculty who also practices part time as a Family Nurse 
-                            Practitioner and Hospital Simulation Learning Center Educator. She completed her Doctor 
-                            of Nursing Practice at the Southern California State University DNP Consortium.
+                            She is involved extensively in the community participating in various outreach and disaster preparedness programs with the LA Health Department Medical Reserve Corp, Public Health Emergency Volunteers, Shiloh Apostolic Church and St Mary's Medical Center's Community Outreach, Benefits and Advocacy. Dr. Brown Farr incorporated a non-profit organization in 2012. She coordinates and facilitate medical service-learning trips to developing countries and is sought for consultation by Universities desiring to incorporate medical missions in their curriculum.
                         </p>
                         <p style="margin-bottom: 1rem;">
-                            Dr. Brown Farr incorporated this non-profit organization in 2012 and coordinates and 
-                            facilitates medical service-learning trips to developing countries. She is a mentor to many 
-                            individuals pursuing their career paths, especially in the field of nursing.
-                        </p>
-                        <p>
-                            She is passionate about the care for the elderly and persons affected by HIV. Her activities 
-                            integrate her love for gardening, reading, experimenting in the kitchen and travelling!
+                            Dr. Brown Farr is a mentor to many individuals pursing their career paths, especially in the field of nursing. She is passionate about the care for the elderly and persons affected by HIV. Her activities integrate her love for gardening, reading, experimenting in the kitchen and travelling!
                         </p>
                     </div>
+                    <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
                 </div>
 
-                <!-- Robert Farr -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                <!-- Nandrea Farr -->
+                <div class="team-card">
                     <div style="background: linear-gradient(135deg, #2D5016 0%, #1a4310 100%); padding: 2.5rem 2rem 3.5rem; position: relative;">
                         <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
                             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -504,23 +555,55 @@
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Robert Farr</h3>
-                        <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">Computer Technician, Realtor</div>
-                        <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">Vice President, Secretary</div>
+                        <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Nandrea Farr</h3>
+                        <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">BSc</div>
+                        <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">Vice President, Assistant Secretary</div>
                     </div>
-                    <div style="padding: 2rem; color: #555; line-height: 1.8; font-size: 0.95rem;">
-                        <p>
-                            Mr. Farr is a Realtor and a Technician with extensive experience. He has over ten years 
-                            of experience teaching computer studies to students aged 4 years to seniors, bringing 
-                            valuable technical expertise and educational skills to the foundation.
+                    <div class="team-card-content">
+                        <p style="margin-bottom: 1rem;">
+                            Ms. Farr Nandrea Farr graduated from CSU Fullerton, majoring in Kinesiology, and is working towards her doctoral degree. She is passionate about sports science, helping others exercise safely, recover from injuries, optimize performance, and improve their overall health. She also has experience volunteering in the hospital rehab unit. Nandrea has helped serve the community with cooked meals and drinks and helped put together bags of groceries for those in need. She has frequently participated in community clean-ups and assisted in making sandwiches for the homeless. Her hobbies include reading and solving combination puzzles.
                         </p>
                     </div>
                 </div>
 
+                <!-- Samara Duncan -->
+                <div class="team-card">
+                    <div style="background: linear-gradient(135deg, #2D5016 0%, #1a4310 100%); padding: 2.5rem 2rem 3.5rem; position: relative;">
+                        <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                            <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                        <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Samara Duncan</h3>
+                        <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">MSW</div>
+                        <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">Secretary</div>
+                    </div>
+                    <div class="team-card-content collapsed">
+                        <p style="margin-bottom: 1rem;">
+                            Samara is a strong advocate for social justice, mental wellness, and equity. After receiving a BA in Sociology and Communication at UC Santa Barbara, she began her career as an AmeriCorps member at City Year Los Angeles. She tutored and mentored high school students in a neighborhood riddled with gangs, gun violence, and poverty. Though she sought to make a change in the lives of her students, she realized that they had more of an impact on her.
+                        </p>
+                        <p style="margin-bottom: 1rem;">
+                            The experience at City Year aroused her passion and desire to serve others. She continued her career as an Employment Specialist at Chrysalis, an organization dedicated to serving individuals who are navigating barriers while seeking employment. Her caseload often consisted of transient persons, individuals with felonies, and inmates living in halfway houses. She assisted these marginalized groups on their path to self-sufficiency by reducing barriers, connecting them to resources, and providing consultation. She was eventually promoted to a leadership role which allowed her to obtain a seat at the decision-making table. She was able to advocate on behalf of clients and staff.
+                        </p>
+                        <p style="margin-bottom: 1rem;">
+                            She later went on to receive her Master of Social Work at CSU Long Beach, in which she was nominated by faculty to be placed on the Graduate Dean's List, an honor limited to one percent of the university's graduate enrollment. During her time at CSULB, she volunteered as a research assistant and interned for the City of Long Beach's Community Impact Division. She facilitated trauma-informed trainings and assisted in the human trafficking program and violence prevention initiative.
+                        </p>
+                        <p style="margin-bottom: 1rem;">
+                            She currently works as a school-based social worker at one of the nation's largest school districts. In her role, she provides mental health support to high school students, their families, and the school system.
+                        </p>
+                        <p style="margin-bottom: 1rem;">
+                            When she's not working, Samara continues to be a source of light to her community. She most recently volunteer with the California American Legion Auxiliary Girl State, where she served as an assistant counselor that engaged young girls in civic engagement and a service project for military veterans.
+                        </p>
+                        <p>
+                            Samara enjoys traveling, trying out new restaurants, spending time with friends, biking, painting, and pottery.
+                        </p>
+                    </div>
+                    <button class="read-more-btn" onclick="toggleReadMore(this)">Read More</button>
+                </div>
+
                 <!-- Sandra Andrews -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                <div class="team-card">
                     <div style="background: linear-gradient(135deg, #2D5016 0%, #1a4310 100%); padding: 2.5rem 2rem 3.5rem; position: relative;">
                         <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
                             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -530,20 +613,17 @@
                         </div>
                         <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Sandra Andrews</h3>
                         <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">Evangelist</div>
-                        <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">Treasurer, Assistant Secretary</div>
+                        <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">Treasurer</div>
                     </div>
-                    <div style="padding: 2rem; color: #555; line-height: 1.8; font-size: 0.95rem;">
-                        <p>
-                            Evangelist Andrews serves as Treasurer and Assistant Secretary, bringing spiritual guidance 
-                            and financial stewardship to the foundation's mission of promoting health and impacting lives globally.
+                    <div class="team-card-content">
+                        <p style="margin-bottom: 1rem;">
+                            Sandra Andrews was born in the USA in the state of Arkansas. She worked in corporate America for numerous years until marriage. Because she's the mother of two girls, she spent much time volunteering at her children's school. She served on the Parent-Teacher Association Committee as secretary and as liaison for teachers/parents/students to establish a safe campus environment and budget issues. It is important for her to lead by example. She believes a "smile" can brighten anyone's day. She has used the skills she obtained in the workforce to support the church's ministry. Currently serves in her place of worship as church secretary, and Superintendent of Sunday School. Her greatest passion is outreach ministries. She believes there is no greater way to show the love of Christ than to help someone in need.
                         </p>
                     </div>
                 </div>
 
-                <!-- Jenylyn Morgan -->
-                <div style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: all 0.3s ease;"
-                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.15)'"
-                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(0,0,0,0.08)'">
+                <!-- Jenelyn Morgan -->
+                <div class="team-card">
                     <div style="background: linear-gradient(135deg, #2D5016 0%, #1a4310 100%); padding: 2.5rem 2rem 3.5rem; position: relative;">
                         <div style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, #f4d03f 0%, #d4af37 100%); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
                             <svg width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
@@ -551,14 +631,13 @@
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Jenylyn Morgan</h3>
+                        <h3 style="color: white; text-align: center; font-family: 'Merriweather', serif; font-size: 1.4rem; margin-bottom: 0.5rem;">Jenelyn Morgan</h3>
                         <div style="text-align: center; color: #f4d03f; font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px;">Missionary</div>
                         <div style="background: rgba(244, 208, 63, 0.2); color: #f4d03f; padding: 0.5rem 1rem; border-radius: 20px; text-align: center; margin-top: 1rem; font-size: 0.85rem; font-weight: bold; border: 1px solid rgba(244, 208, 63, 0.3);">Assistant Treasurer</div>
                     </div>
-                    <div style="padding: 2rem; color: #555; line-height: 1.8; font-size: 0.95rem;">
+                    <div class="team-card-content">
                         <p>
-                            Missionary Morgan serves as Assistant Treasurer, combining her missionary experience with 
-                            financial oversight to support the foundation's global health promotion and service learning initiatives.
+                            Missionary Morgan serves as Assistant Treasurer, combining her missionary experience with financial oversight to support the foundation's global health promotion and service learning initiatives.
                         </p>
                     </div>
                 </div>
@@ -609,6 +688,32 @@
         </div>
     </footer>
 
+    <script>
+        function toggleReadMore(button) {
+            const card = button.closest('.team-card');
+            const content = button.previousElementSibling;
+            
+            if (content.classList.contains('collapsed')) {
+                content.classList.remove('collapsed');
+                content.classList.add('expanded');
+                button.textContent = 'Read Less';
+                card.style.height = 'auto';
+            } else {
+                content.classList.remove('expanded');
+                content.classList.add('collapsed');
+                button.textContent = 'Read More';
+                const cards = document.querySelectorAll('.team-card');
+                const cardIndex = Array.from(cards).indexOf(card);
+                if (cardIndex === 0) {
+                    card.style.height = '730px';
+                } else if (cardIndex === 2) {
+                    card.style.height = '810px';
+                } else {
+                    card.style.height = '780px';
+                }
+            }
+        }
+    </script>
     <script src="js/main.js"></script>
 </body>
 </html>
